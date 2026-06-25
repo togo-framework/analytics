@@ -87,7 +87,7 @@ type Service struct {
 }
 
 func init() {
-	togo.RegisterProviderFunc("analytics", togo.PriorityService, func(k *togo.Kernel) error {
+	togo.RegisterProviderFunc("analytics", togo.PriorityLate+10, func(k *togo.Kernel) error {
 		s := &Service{store: &memStore{max: 100000}, traits: map[string]map[string]any{}}
 		k.Set("analytics", s)
 		if k.Router != nil {
